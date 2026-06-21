@@ -3,5 +3,5 @@ uvicorn
 pdfplumber
 pypdf
 lxml
-google-generativeai
+google-genai
 python-multipart

@@ -1,8 +1,7 @@
-import google.generativeai as genai
+import google.genai as genai
 import json, os
 
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-model = genai.GenerativeModel("gemini-1.5-flash")
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY", ""))
 
 SYSTEM_PROMPT = """You are a scientific document parser.
 Extract structure from academic paper text and return ONLY valid JSON.
@@ -35,6 +34,9 @@ PAPER TEXT:
 def parse_with_ai(full_text: str) -> dict:
     text = full_text[:12000]
     prompt = SYSTEM_PROMPT + "\n\n" + USER_PROMPT_TEMPLATE.format(text=text)
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model="gemini-1.5-flash",
+        contents=prompt
+    )
     raw = response.text.replace("```json", "").replace("```", "").strip()
     return json.loads(raw)
