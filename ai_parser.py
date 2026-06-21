@@ -1,4 +1,3 @@
-cat > ai_parser.py << 'EOF'
 import google.generativeai as genai
 import json, os
 
@@ -39,4 +38,3 @@ def parse_with_ai(full_text: str) -> dict:
     response = model.generate_content(prompt)
     raw = response.text.replace("```json", "").replace("```", "").strip()
     return json.loads(raw)
-EOF

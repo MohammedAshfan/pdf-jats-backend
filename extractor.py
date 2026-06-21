@@ -1,4 +1,3 @@
-cat > extractor.py << 'EOF'
 import pdfplumber
 import pypdf
 
@@ -24,4 +23,3 @@ def extract_pdf(file_path: str) -> dict:
 
     full_text = "\n".join(p["text"] for p in pages)
     return {"meta": meta, "pages": pages, "full_text": full_text}
-EOF

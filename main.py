@@ -1,4 +1,3 @@
-cat > main.py << 'EOF'
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -34,4 +33,3 @@ async def convert_pdf(file: UploadFile = File(...)):
 async def generate_xml(payload: dict):
     xml_str = build_jats(payload)
     return JSONResponse({"xml": xml_str})
-EOF

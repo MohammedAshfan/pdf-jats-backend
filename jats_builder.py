@@ -1,4 +1,3 @@
-cat > jats_builder.py << 'EOF'
 from lxml import etree
 
 def build_jats(data: dict) -> str:
@@ -55,4 +54,3 @@ def build_jats(data: dict) -> str:
 
     return etree.tostring(root, pretty_print=True,
                           xml_declaration=True, encoding="UTF-8").decode()
-EOF
