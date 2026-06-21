@@ -1,7 +1,4 @@
 cat > nixpacks.toml << 'EOF'
-[phases.setup]
-nixPkgs = ["poppler_utils", "tesseract"]
-
 [phases.install]
 cmds = ["pip install -r requirements.txt"]
 
