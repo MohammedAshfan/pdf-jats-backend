@@ -1,0 +1,12 @@
+cat > requirements.txt << 'EOF'
+fastapi
+uvicorn
+pdfplumber
+pypdf
+pytesseract
+pdf2image
+lxml
+google-generativeai
+python-multipart
+supabase
+EOF
