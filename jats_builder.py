@@ -1,11 +1,14 @@
 from lxml import etree
 
 def build_jats(data: dict) -> str:
-    root = etree.Element("article", attrib={
-        "xmlns:xlink": "http://www.w3.org/1999/xlink",
-        "article-type": data.get("article_type") or "research-article",
-        "dtd-version": "1.3"
-    })
+    XLINK = "http://www.w3.org/1999/xlink"
+    root = etree.Element("article",
+        attrib={
+            "article-type": data.get("article_type") or "research-article",
+            "dtd-version": "1.3"
+        },
+        nsmap={"xlink": XLINK}
+    )
 
     front = etree.SubElement(root, "front")
     meta = etree.SubElement(front, "article-meta")
