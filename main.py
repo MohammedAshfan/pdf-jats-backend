@@ -10,8 +10,20 @@ app = FastAPI()
 
 app.add_middleware(CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"])
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
+import traceback
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request, exc):
+    return JSONResponse(
+        status_code=500,
+        content={"error": str(exc), "detail": traceback.format_exc()},
+        headers={"Access-Control-Allow-Origin": "*"}
+    )
 
 @app.get("/")
 def root():
