@@ -24,4 +24,15 @@ def parse_with_ai(full_text: str) -> dict:
         contents=prompt
     )
     raw = response.text.replace("```json", "").replace("```", "").strip()
-    return json.loads(raw)
+    
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        cleaned = raw.encode('utf-8', 'ignore').decode('utf-8')
+        cleaned = cleaned.replace('\\', '\\\\').replace('\\\\"', '\\"')
+        try:
+            return json.loads(cleaned)
+        except json.JSONDecodeError:
+            import re
+            fixed = re.sub(r'\\(?!["\\/bfnrtu])', r'\\\\', raw)
+            return json.loads(fixed)
