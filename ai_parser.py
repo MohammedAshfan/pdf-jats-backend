@@ -35,7 +35,7 @@ def parse_with_ai(full_text: str) -> dict:
     text = full_text[:12000]
     prompt = SYSTEM_PROMPT + "\n\n" + USER_PROMPT_TEMPLATE.format(text=text)
     response = client.models.generate_content(
-        model="gemini-2.0-flash",
+        model="gemini-2.5-flash-lite",
         contents=prompt
     )
     raw = response.text.replace("```json", "").replace("```", "").strip()
