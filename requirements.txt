@@ -1,4 +1,3 @@
-cat > requirements.txt << 'EOF'
 fastapi
 uvicorn
 pdfplumber
@@ -6,4 +5,3 @@ pypdf
 lxml
 google-generativeai
 python-multipart
-EOF
